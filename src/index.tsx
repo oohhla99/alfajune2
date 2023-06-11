@@ -15,8 +15,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./style.css";
-import Home from "./views/Home";
-import PageHome from "./views/page";
+import DappHome from "./views/DappHome";
+import DappGate from "./views/DappGate";
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum],
@@ -41,8 +41,8 @@ const App = () => {
         <RainbowKitProvider chains={chains}>
           <ToastContainer />
           <Routes>
-            <Route path="/" element={<PageHome />} />
-            <Route path="/airdrop-bot" element={<Home />} />
+            <Route path="/" element={<DappGate />} />
+            <Route path="/airdrop-bot" element={<DappHome />} />
           </Routes>
         </RainbowKitProvider>
       </WagmiConfig>

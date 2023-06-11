@@ -1,20 +1,19 @@
-import React from 'react';
-import DangerousHTML from 'dangerous-html/react';
-import { Helmet } from 'react-helmet';
-import Arbdrop from '../components/Arbdrop/Arbdrop';
-import Metadrop from '../components/Metadrop/Metadrop';
-import ZKdrop from '../components/Zkdrop/Zkdrop';
-import { useNavigate } from 'react-router-dom';
-import { useAccount, useDisconnect } from 'wagmi';
+import React from "react";
+import { Helmet } from "react-helmet";
+import Arbdrop from "../components/Arbdrop/Arbdrop";
+import Metadrop from "../components/Metadrop/Metadrop";
+import ZKdrop from "../components/Zkdrop/Zkdrop";
+import { useNavigate } from "react-router-dom";
+import { useAccount, useDisconnect } from "wagmi";
 
-import './Home.css';
+import "./DappHome.css";
 
-const Home = (props) => {
+const DappHome = (props) => {
   let navigate = useNavigate();
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
 
-  let copyRightYear = 'alfa.society ' + new Date().getFullYear();
+  let copyRightYear = "alfa.society " + new Date().getFullYear();
 
   return (
     <div className="home-container">
@@ -24,23 +23,6 @@ const Home = (props) => {
       </Helmet>
       <section className="home-hero">
         <div className="home-menu">
-          <div id="mobile-menu" className="home-mobile-navigation">
-            <img
-              alt="pastedImage"
-              src="https://play.teleporthq.io/static/svg/placeholders/no-image.svg"
-              className="home-logo"
-            />
-            <div className="home-links">
-              <span className="Link">Solutions</span>
-              <span className="Link">How it works</span>
-              <span className="Link">Prices</span>
-            </div>
-            <div id="close-mobile-menu" className="home-close-mobile-menu">
-              <svg viewBox="0 0 804.5714285714286 1024" className="home-icon">
-                <path d="M741.714 755.429c0 14.286-5.714 28.571-16 38.857l-77.714 77.714c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-168-168-168 168c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-77.714-77.714c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l168-168-168-168c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l77.714-77.714c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l168 168 168-168c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l77.714 77.714c10.286 10.286 16 24.571 16 38.857s-5.714 28.571-16 38.857l-168 168 168 168c10.286 10.286 16 24.571 16 38.857z"></path>
-              </svg>
-            </div>
-          </div>
           <div className="home-desktop-navigation">
             <nav className="home-centered">
               <div className="home-left">
@@ -66,39 +48,14 @@ const Home = (props) => {
                 <svg
                   viewBox="0 0 877.7142857142857 1024"
                   className="home-icon02"
-                  onClick={() => disconnect(navigate('/'))}
+                  onClick={() => disconnect(navigate("/"))}
                 >
                   <path d="M877.714 512c0 241.714-197.143 438.857-438.857 438.857s-438.857-197.143-438.857-438.857c0-138.857 64-266.857 175.429-350.286 32.571-24.571 78.286-18.286 102.286 14.286 24.571 32 17.714 78.286-14.286 102.286-74.286 56-117.143 141.143-117.143 233.714 0 161.143 131.429 292.571 292.571 292.571s292.571-131.429 292.571-292.571c0-92.571-42.857-177.714-117.143-233.714-32-24-38.857-70.286-14.286-102.286 24-32.571 70.286-38.857 102.286-14.286 111.429 83.429 175.429 211.429 175.429 350.286zM512 73.143v365.714c0 40-33.143 73.143-73.143 73.143s-73.143-33.143-73.143-73.143v-365.714c0-40 33.143-73.143 73.143-73.143s73.143 33.143 73.143 73.143z"></path>
                 </svg>
               </div>
             </nav>
           </div>
-          <div>
-            <DangerousHTML
-              html={`<script>
-/*
-Mobile menu - Code Embed
-*/
-
-// Mobile menu
-const mobileMenu = document.querySelector("#mobile-menu")
-
-// Buttons
-const closeButton = document.querySelector("#close-mobile-menu")
-const openButton = document.querySelector("#open-mobile-menu")
-
-// On openButton click, set the mobileMenu position left to -100vw
-openButton.addEventListener("click", function() {
-    mobileMenu.style.transform = "translateX(0%)"
-})
-
-// On closeButton click, set the mobileMenu position to 0vw
-closeButton.addEventListener("click", function() {
-    mobileMenu.style.transform = "translateX(100%)"
-})
-</script>`}
-            ></DangerousHTML>
-          </div>
+          <div></div>
         </div>
         <div className="home-container2">
           <div className="home-links2">
@@ -157,7 +114,6 @@ closeButton.addEventListener("click", function() {
               >
                 More info
               </a>
-              <button className="themebutton hidebutton button">Coming </button>
             </div>
           </div>
           <div className="home-container4">
@@ -206,7 +162,7 @@ closeButton.addEventListener("click", function() {
               >
                 More info
               </a>
-              <ZKdrop rootClassName="component1-root-class-name"/>
+              <ZKdrop rootClassName="component1-root-class-name" />
             </div>
           </div>
         </div>
@@ -220,7 +176,7 @@ closeButton.addEventListener("click", function() {
               <span>
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: ' ',
+                    __html: " ",
                   }}
                 />
               </span>
@@ -276,4 +232,4 @@ closeButton.addEventListener("click", function() {
   );
 };
 
-export default Home;
+export default DappHome;

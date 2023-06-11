@@ -119,6 +119,10 @@
   padding-bottom: var(--dl-space-space-unit);
   background-color: var(--dl-color-template-themepurple);
 }
+.home-text03:hover {
+  color: var(--dl-color-gray-white);
+  background-color: var(--dl-color-template-themepurple);
+}
 .home-text04 {
   font-style: normal;
   transition: 0.3s;

@@ -8,6 +8,13 @@
   justify-content: center;
   background-color: var(--dl-color-template-themepurple);
 }
+.button.main__button.page-button.themebutton:hover {
+  color: white;
+}
+.hover-white:hover {
+  color: white;
+}
+
 .page-button {
   top: 24px;
   right: 22px;
@@ -88,12 +95,12 @@
   justify-content: center;
   background-color: var(--dl-color-template-themepurple);
 }
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .page-banner {
     padding: var(--dl-space-space-twounits);
   }
 }
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .page-banner {
     padding: var(--dl-space-space-twounits);
   }
@@ -107,7 +114,7 @@
     max-width: 100%;
   }
 }
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .page-button {
     top: 21px;
     right: 17px;
@@ -130,7 +137,7 @@
     padding-right: var(--dl-space-space-unit);
   }
 }
-@media(max-width: 479px) {
+@media (max-width: 479px) {
   .page-container {
     gap: 0;
     align-items: center;
