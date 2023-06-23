@@ -1,5 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import '../views/page.css'
+import "../views/DappGate";
 
 export const ConnectionButton = () => {
   return (
@@ -23,11 +23,12 @@ export const ConnectionButton = () => {
           (!authenticationStatus || authenticationStatus === "authenticated");
         return (
           <div
+            className="page-button themebutton button  "
             {...(!ready && {
               "aria-hidden": true,
               style: {
                 opacity: 0,
-                pointerEvents: "none",
+                pointerEvents: "cursor",
                 userSelect: "none",
               },
             })}
@@ -36,6 +37,7 @@ export const ConnectionButton = () => {
               if (!connected) {
                 return (
                   <button
+                    className="hidden"
                     style={{
                       color: "#5f17ffff",
                     }}
@@ -48,11 +50,7 @@ export const ConnectionButton = () => {
               }
               if (chain.unsupported) {
                 return (
-                  <button
-                    className=""
-                    onClick={openChainModal}
-                    type="button"
-                  >
+                  <button className="" onClick={openChainModal} type="button">
                     Wrong network
                   </button>
                 );
@@ -63,7 +61,7 @@ export const ConnectionButton = () => {
                     onClick={openChainModal}
                     // style={{ display: 'flex', alignItems: 'center' }}
                     type="button"
-                    className="main__button hidden"
+                    className="hidden"
                   >
                     {chain.hasIcon && (
                       <div
@@ -87,11 +85,7 @@ export const ConnectionButton = () => {
                     )}
                     {chain.name}
                   </button>
-                  <button
-                    onClick={openAccountModal}
-                    type="button"
-                    className=""
-                  >
+                  <button onClick={openAccountModal} type="button" className="">
                     {account.displayName}
                     {/* {account.displayBalance
                       ? ` (${account.displayBalance})`
