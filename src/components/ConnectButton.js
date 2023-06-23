@@ -1,5 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import "../views/DappGate";
+import "../views/DappGate.css";
 
 export const ConnectionButton = () => {
   return (
@@ -23,7 +24,7 @@ export const ConnectionButton = () => {
           (!authenticationStatus || authenticationStatus === "authenticated");
         return (
           <div
-            className="page-button themebutton button"
+            className="page-button themebutton button connectbutton"
             {...(!ready && {
               "aria-hidden": true,
               style: {
@@ -37,7 +38,7 @@ export const ConnectionButton = () => {
               if (!connected) {
                 return (
                   <button
-                    className="hidden"
+                    className="hidden connectbutton"
                     onClick={openConnectModal}
                     type="button"
                   >
@@ -47,18 +48,22 @@ export const ConnectionButton = () => {
               }
               if (chain.unsupported) {
                 return (
-                  <button className="" onClick={openChainModal} type="button">
+                  <button
+                    className="connectbutton"
+                    onClick={openChainModal}
+                    type="button"
+                  >
                     Wrong network
                   </button>
                 );
               }
               return (
-                <div style={{ display: "flex", gap: 12 }}>
+                <div className="connectedbutton">
                   <button
                     onClick={openChainModal}
                     // style={{ display: 'flex', alignItems: 'center' }}
-                    type="button"
-                    className="hidden"
+                    type="button "
+                    className="hidden chainbutton connectbutton"
                   >
                     {chain.hasIcon && (
                       <div
@@ -82,7 +87,11 @@ export const ConnectionButton = () => {
                     )}
                     {chain.name}
                   </button>
-                  <button onClick={openAccountModal} type="button" className="">
+                  <button
+                    onClick={openAccountModal}
+                    type="button"
+                    className="connectbutton"
+                  >
                     {account.displayName}
                     {/* {account.displayBalance
                       ? ` (${account.displayBalance})`

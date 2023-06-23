@@ -156,6 +156,18 @@
   padding-bottom: 10px;
   background-color: #fcfcfc;
 }
+.home-right:hover {
+  background-color: var(--dl-color-template-themepurple);
+  cursor: pointer;
+}
+.home-right:hover .home-text05 {
+  color: #ffffff;
+  background-color: var(--dl-color-template-themepurple);
+  cursor: pointer;
+}
+.home-right:hover .home-icon02 {
+  fill: var(--dl-color-gray-700);
+}
 .home-burger-menu {
   border: 2px dashed rgba(120, 120, 120, 0.4);
   display: flex;
@@ -242,6 +254,25 @@
 }
 .home-text09 {
   line-height: 24px;
+}
+.airdropLinks {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.airdropLink {
+  align-self: flex-start;
+  margin-top: var(--dl-space-space-unit);
+  transition: 0.3s;
+  line-height: 24px;
+  margin-bottom: var(--dl-space-space-unit);
+  text-decoration: none;
+  color: #5f17ff;
+  cursor: pointer;
+  white-space: nowrap;
+  padding-right: 15px;
+}
+.airdropLink:hover {
+  text-decoration: underline;
 }
 .home-link {
   align-self: flex-start;

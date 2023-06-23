@@ -45,7 +45,10 @@ const DappHome = (props) => {
                   <span className="home-text04 Link">alfa.walletduster</span>
                 </div>
               </div>
-              <div className="home-right">
+              <div
+                onClick={() => disconnect(navigate("/"))}
+                className="home-right"
+              >
                 <div id="open-mobile-menu" className="home-burger-menu"></div>
                 <div className="home-container1">
                   <span className="home-text05 Link">
@@ -85,14 +88,24 @@ const DappHome = (props) => {
                 the congestion that the Ethereum network has been experiencing
                 by improving how smart contracts are validated.
               </span>
-              <a
-                href="https://arbitrum.io/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="home-link Link"
-              >
-                More info
-              </a>
+              <div className="airdropLinks">
+                <a
+                  href="https://arbitrum.io/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  More info
+                </a>
+                <a
+                  href="https://3053004074-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fus2iMTHQw8b5HBPiAvSZ%2Fuploads%2FKH77qAcR9qm81ZdcgobH%2Falfa.airdropbot_arbitrum_instructions.pdf?alt=media&token=3740f5d2-e0ea-46be-81e3-db78d78e02ad"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  Instructions
+                </a>
+              </div>
               <Arbdrop rootClassName="component1-root-class-name"></Arbdrop>
             </div>
             <div className="home-schedule1 card">
@@ -137,14 +150,24 @@ const DappHome = (props) => {
                 token exchange—everything you need to manage your digital
                 assets. MetaMask provides the simplest yet most secure way...
               </span>
-              <a
-                href="https://metamask.io/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="home-link2 Link"
-              >
-                More info
-              </a>
+              <div className="airdropLinks">
+                <a
+                  href="https://metamask.io/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  More info
+                </a>
+                <a
+                  href="https://3053004074-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fus2iMTHQw8b5HBPiAvSZ%2Fuploads%2FpxDLe4cO8B9gQrurkIQb%2Falfa.airdropbot_metamask_instructions.pdf?alt=media&token=2a95dc01-9c43-40a4-8421-5323744aaf24"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  Instructions
+                </a>
+              </div>
               <Metadrop rootClassName="component1-root-class-name"></Metadrop>
             </div>
             <div className="home-schedule card">
@@ -161,14 +184,24 @@ const DappHome = (props) => {
                 off-chain. For every Rollup block, a state transition
                 zero-knowledge proo...
               </span>
-              <a
-                href="https://zksync.io/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="home-link3 Link"
-              >
-                More info
-              </a>
+              <div className="airdropLinks">
+                <a
+                  href="https://zksync.io/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  More info
+                </a>
+                <a
+                  href="https://3053004074-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fus2iMTHQw8b5HBPiAvSZ%2Fuploads%2FBffaN4ewyJfcB4v2EaIx%2Falfa.airdropbot_zksync_instructions.pdf?alt=media&token=81a699a3-694d-4de9-92f8-a627488e7f51"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  Instructions
+                </a>
+              </div>
               <ZKdrop rootClassName="component1-root-class-name" />
             </div>
           </div>
