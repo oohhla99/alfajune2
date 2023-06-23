@@ -8,9 +8,7 @@
   justify-content: center;
   background-color: var(--dl-color-template-themepurple);
 }
-.button.main__button.page-button.themebutton:hover {
-  color: white;
-}
+
 .hover-white:hover {
   color: white;
 }
@@ -30,6 +28,7 @@
   justify-content: center;
   background-color: var(--dl-color-template-themepurple);
 }
+
 .page-banner {
   width: 472px;
   display: flex;

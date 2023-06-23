@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Arbdrop from "../components/Arbdrop/Arbdrop";
 import Metadrop from "../components/Metadrop/Metadrop";
@@ -14,6 +14,13 @@ const DappHome = (props) => {
   const { disconnect } = useDisconnect();
 
   let copyRightYear = "alfa.society " + new Date().getFullYear();
+
+  useEffect(() => {
+    // Redirect to homepage if not connected
+    if (!isConnected) {
+      navigate("/");
+    }
+  }, [isConnected, navigate]);
 
   return (
     <div className="home-container">

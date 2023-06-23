@@ -23,7 +23,7 @@ export const ConnectionButton = () => {
           (!authenticationStatus || authenticationStatus === "authenticated");
         return (
           <div
-            className="page-button themebutton button  "
+            className="page-button themebutton button"
             {...(!ready && {
               "aria-hidden": true,
               style: {
@@ -38,9 +38,6 @@ export const ConnectionButton = () => {
                 return (
                   <button
                     className="hidden"
-                    style={{
-                      color: "#5f17ffff",
-                    }}
                     onClick={openConnectModal}
                     type="button"
                   >
