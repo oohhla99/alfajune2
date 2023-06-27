@@ -15,12 +15,12 @@ const DappHome = (props) => {
 
   let copyRightYear = "alfa.society " + new Date().getFullYear();
 
-  useEffect(() => {
-    // Redirect to homepage if not connected
-    if (!isConnected) {
-      navigate("/");
-    }
-  }, [isConnected, navigate]);
+  // useEffect(() => {
+  //   // Redirect to homepage if not connected
+  //   if (!isConnected) {
+  //     navigate("/");
+  //   }
+  // }, [isConnected, navigate]);
 
   return (
     <div className="home-container">
