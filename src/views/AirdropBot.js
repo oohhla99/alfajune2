@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAccount } from "wagmi";
 
 import { Helmet } from "react-helmet";
 import Arbdrop from "../components/Arbdrop/Arbdrop";
 import Metadrop from "../components/Metadrop/Metadrop";
 import ZKdrop from "../components/Zkdrop/Zkdrop";
-import { useNavigate } from "react-router-dom";
-import { useAccount, useDisconnect } from "wagmi";
 
 import "./AirdropBot.css";
 
@@ -19,31 +19,7 @@ const AirdropBot = (props) => {
     if (!isConnected || isWhitelisted !== "true") {
       navigate("/");
     }
-
-    // Handle network change event
-    const handleNetworkChange = (newNetworkId) => {
-      // Check if user is still connected and whitelisted
-      const isWhitelisted = localStorage.getItem("isWhitelisted");
-      if (!isConnected || isWhitelisted !== "true") {
-        navigate("/");
-      }
-    };
-
-    // Listen for network change events
-    if (window.ethereum) {
-      window.ethereum.autoRefreshOnNetworkChange = false;
-      window.ethereum.on("chainChanged", handleNetworkChange);
-    }
-
-    // Clean up event listener
-    return () => {
-      if (window.ethereum) {
-        window.ethereum.removeListener("chainChanged", handleNetworkChange);
-      }
-    };
   }, [isConnected, navigate]);
-
-  const { disconnect } = useDisconnect();
 
   let copyRightYear = "alfa.society " + new Date().getFullYear();
 
