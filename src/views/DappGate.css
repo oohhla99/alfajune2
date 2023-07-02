@@ -41,6 +41,7 @@
   border-color: #e2e2e2;
   justify-content: center;
   background-color: var(--dl-color-template-themepurple);
+  cursor: pointer;
 }
 
 .page-banner {
@@ -107,6 +108,7 @@
   border-color: #e2e2e2;
   justify-content: center;
   background-color: var(--dl-color-template-themepurple);
+  cursor: pointer;
 }
 @media (max-width: 1200px) {
   .page-banner {

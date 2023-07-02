@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import { Helmet } from "react-helmet";
 import Arbdrop from "../components/Arbdrop/Arbdrop";
 import Metadrop from "../components/Metadrop/Metadrop";
@@ -6,21 +7,45 @@ import ZKdrop from "../components/Zkdrop/Zkdrop";
 import { useNavigate } from "react-router-dom";
 import { useAccount, useDisconnect } from "wagmi";
 
-import "./DappHome.css";
+import "./AirdropBot.css";
 
-const DappHome = (props) => {
+const AirdropBot = (props) => {
   let navigate = useNavigate();
   const { address, isConnected } = useAccount();
+
+  useEffect(() => {
+    // Redirect to homepage if not connected or not whitelisted
+    const isWhitelisted = localStorage.getItem("isWhitelisted");
+    if (!isConnected || isWhitelisted !== "true") {
+      navigate("/");
+    }
+
+    // Handle network change event
+    const handleNetworkChange = (newNetworkId) => {
+      // Check if user is still connected and whitelisted
+      const isWhitelisted = localStorage.getItem("isWhitelisted");
+      if (!isConnected || isWhitelisted !== "true") {
+        navigate("/");
+      }
+    };
+
+    // Listen for network change events
+    if (window.ethereum) {
+      window.ethereum.autoRefreshOnNetworkChange = false;
+      window.ethereum.on("chainChanged", handleNetworkChange);
+    }
+
+    // Clean up event listener
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener("chainChanged", handleNetworkChange);
+      }
+    };
+  }, [isConnected, navigate]);
+
   const { disconnect } = useDisconnect();
 
   let copyRightYear = "alfa.society " + new Date().getFullYear();
-
-  // useEffect(() => {
-  //   // Redirect to homepage if not connected
-  //   if (!isConnected) {
-  //     navigate("/");
-  //   }
-  // }, [isConnected, navigate]);
 
   return (
     <div className="home-container">
@@ -33,16 +58,18 @@ const DappHome = (props) => {
           <div className="home-desktop-navigation">
             <nav className="home-centered">
               <div className="home-left">
-                <img
-                  alt="pastedImage"
-                  src="/playground_assets/alfa_logo-1500h.png"
-                  className="home-logo1"
-                />
+                <a href="http://alfasociety.io/">
+                  <img
+                    alt="pastedImage"
+                    src="/playground_assets/alfa_logo-1500h.png"
+                    className="home-logo1"
+                  />
+                </a>
                 <div className="home-links1">
                   <span className="home-text03 Link active">
                     alfa.airdropbot
                   </span>
-                  <span className="home-text04 Link">alfa.walletduster</span>
+                  <span className="home-text04 Link ">alfa.walletduster</span>
                 </div>
               </div>
               <div
@@ -236,11 +263,13 @@ const DappHome = (props) => {
       </section>
       <section className="home-action-bar1">
         <footer className="home-footer">
-          <img
-            alt="logo"
-            src="/playground_assets/alfa_logo-1500h.png"
-            className="home-image"
-          />
+          <a href="https://www.alfasociety.io/">
+            <img
+              alt="logo"
+              src="/playground_assets/alfa_logo-1500h.png"
+              className="home-image"
+            />
+          </a>
           <div className="home-container7">
             <span className="home-text24">Copyright © {copyRightYear}</span>
           </div>
@@ -256,7 +285,7 @@ const DappHome = (props) => {
               </svg>
             </a>
             <a
-              href="https://twitter.com/theALFAcoinETH"
+              href="https://twitter.com/alfasocietyERC"
               target="_blank"
               rel="noreferrer noopener"
               className="home-link6"
@@ -272,4 +301,4 @@ const DappHome = (props) => {
   );
 };
 
-export default DappHome;
+export default AirdropBot;
