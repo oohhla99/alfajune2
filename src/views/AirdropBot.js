@@ -10,19 +10,44 @@ import ZKdrop from "../components/Zkdrop/Zkdrop";
 import "./AirdropBot.css";
 
 const AirdropBot = (props) => {
-  const [isLoading, setIsLoading] = useState(true); // Add isLoading state
+  const [isLoading, setIsLoading] = useState(true);
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
   let navigate = useNavigate();
   const { address, isConnected } = useAccount();
 
   useEffect(() => {
-    // Redirect to homepage if not connected or not whitelisted
-    const isWhitelisted = localStorage.getItem("isWhitelisted");
-    if (!isConnected || isWhitelisted !== "true") {
+    const lastWhitelistCheckTime = localStorage.getItem("whitelistCheckTime");
+    const isWhitelistedStored = localStorage.getItem("isWhitelisted");
+
+    if (
+      lastWhitelistCheckTime &&
+      isWhitelistedStored === "true" &&
+      isConnected &&
+      address
+    ) {
+      const currentTime = new Date().getTime();
+      const elapsedTime = currentTime - parseInt(lastWhitelistCheckTime);
+
+      // Check if elapsed time is within a certain time frame (e.g. 5 minutes)
+      const timeFrame = 20 * 60 * 1000; // 20 minutes in milliseconds
+      if (elapsedTime <= timeFrame) {
+        setIsWhitelisted(true);
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    if (!isConnected || isWhitelistedStored !== "true") {
       navigate("/");
     } else {
-      setIsLoading(false); // Set isLoading to false when connected and whitelisted
+      setIsLoading(false);
+      setIsWhitelisted(true);
+      localStorage.setItem(
+        "whitelistCheckTime",
+        new Date().getTime().toString()
+      );
     }
-  }, [isConnected, navigate]);
+  }, [isConnected, navigate, address]);
 
   let copyRightYear = "alfa.society " + new Date().getFullYear();
 
