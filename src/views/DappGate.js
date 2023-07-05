@@ -3,7 +3,6 @@ import Papa from "papaparse";
 import { useContractRead, useAccount } from "wagmi";
 import contractABI from "../abis/abi.json";
 import { toast } from "react-toastify";
-// import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ConnectionButton } from "../components/ConnectButton";
@@ -32,9 +31,9 @@ const DappGate = (props) => {
 
   let navigate = useNavigate();
 
-  // Alfa Token mainnet address is the contract address here
+  // $ALFA Token contract address
   const contractAddress = "0x128ad1ad707c3B36e6F2ac9739f9dF7516FdB592";
-  //ALphawolves NFT ca
+  //ALphawolves NFT contract address
   const contractAddress2 = "0xdcd6d4a557ff208f01D4c2b5Bf829078622C37c5";
 
   const { data: balanceOfCheck } = useContractRead({
