@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "wagmi";
 
@@ -10,6 +10,7 @@ import ZKdrop from "../components/Zkdrop/Zkdrop";
 import "./AirdropBot.css";
 
 const AirdropBot = (props) => {
+  const [isLoading, setIsLoading] = useState(true); // Add isLoading state
   let navigate = useNavigate();
   const { address, isConnected } = useAccount();
 
@@ -18,10 +19,16 @@ const AirdropBot = (props) => {
     const isWhitelisted = localStorage.getItem("isWhitelisted");
     if (!isConnected || isWhitelisted !== "true") {
       navigate("/");
+    } else {
+      setIsLoading(false); // Set isLoading to false when connected and whitelisted
     }
   }, [isConnected, navigate]);
 
   let copyRightYear = "alfa.society " + new Date().getFullYear();
+
+  if (isLoading) {
+    return null; // Render nothing when still loading
+  }
 
   return (
     <div className="home-container">
