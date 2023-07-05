@@ -129,7 +129,7 @@ const DappGate = (props) => {
           className="page-image"
         />
         <h1 className="page-text">alfa.dapp</h1>
-        <span className="page-text1">v1.1</span>
+        <span className="page-text1">v1.2</span>
         <span className="page-text2">
           You need to whitelist your wallet first.
         </span>
