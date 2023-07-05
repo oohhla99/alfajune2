@@ -1,26 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAccount } from "wagmi";
+
 import { Helmet } from "react-helmet";
 import Arbdrop from "../components/Arbdrop/Arbdrop";
 import Metadrop from "../components/Metadrop/Metadrop";
 import ZKdrop from "../components/Zkdrop/Zkdrop";
-import { useNavigate } from "react-router-dom";
-import { useAccount, useDisconnect } from "wagmi";
 
-import "./DappHome.css";
+import "./AirdropBot.css";
 
-const DappHome = (props) => {
+const AirdropBot = (props) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
   let navigate = useNavigate();
   const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
+
+  useEffect(() => {
+    const lastWhitelistCheckTime = localStorage.getItem("whitelistCheckTime");
+    const isWhitelistedStored = localStorage.getItem("isWhitelisted");
+
+    if (
+      lastWhitelistCheckTime &&
+      isWhitelistedStored === "true" &&
+      isConnected &&
+      address
+    ) {
+      const currentTime = new Date().getTime();
+      const elapsedTime = currentTime - parseInt(lastWhitelistCheckTime);
+
+      // Check if elapsed time is within a certain time frame (e.g. 5 minutes)
+      const timeFrame = 20 * 60 * 1000; // 20 minutes in milliseconds
+      if (elapsedTime <= timeFrame) {
+        setIsWhitelisted(true);
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    if (!isConnected || isWhitelistedStored !== "true") {
+      navigate("/");
+    } else {
+      setIsLoading(false);
+      setIsWhitelisted(true);
+      localStorage.setItem(
+        "whitelistCheckTime",
+        new Date().getTime().toString()
+      );
+    }
+  }, [isConnected, navigate, address]);
 
   let copyRightYear = "alfa.society " + new Date().getFullYear();
 
-  // useEffect(() => {
-  //   // Redirect to homepage if not connected
-  //   if (!isConnected) {
-  //     navigate("/");
-  //   }
-  // }, [isConnected, navigate]);
+  if (isLoading) {
+    return null; // Render nothing when still loading
+  }
 
   return (
     <div className="home-container">
@@ -33,22 +66,21 @@ const DappHome = (props) => {
           <div className="home-desktop-navigation">
             <nav className="home-centered">
               <div className="home-left">
-                <img
-                  alt="pastedImage"
-                  src="/playground_assets/alfa_logo-1500h.png"
-                  className="home-logo1"
-                />
+                <a href="http://alfasociety.io/">
+                  <img
+                    alt="pastedImage"
+                    src="/playground_assets/alfa_logo-1500h.png"
+                    className="home-logo1"
+                  />
+                </a>
                 <div className="home-links1">
                   <span className="home-text03 Link active">
                     alfa.airdropbot
                   </span>
-                  <span className="home-text04 Link">alfa.walletduster</span>
+                  <span className="home-text04 Link ">alfa.walletduster</span>
                 </div>
               </div>
-              <div
-                onClick={() => disconnect(navigate("/"))}
-                className="home-right"
-              >
+              <div onClick={() => navigate("/")} className="home-right">
                 <div id="open-mobile-menu" className="home-burger-menu"></div>
                 <div className="home-container1">
                   <span className="home-text05 Link">
@@ -58,7 +90,7 @@ const DappHome = (props) => {
                 <svg
                   viewBox="0 0 877.7142857142857 1024"
                   className="home-icon02"
-                  onClick={() => disconnect(navigate("/"))}
+                  onClick={() => navigate("/")}
                 >
                   <path d="M877.714 512c0 241.714-197.143 438.857-438.857 438.857s-438.857-197.143-438.857-438.857c0-138.857 64-266.857 175.429-350.286 32.571-24.571 78.286-18.286 102.286 14.286 24.571 32 17.714 78.286-14.286 102.286-74.286 56-117.143 141.143-117.143 233.714 0 161.143 131.429 292.571 292.571 292.571s292.571-131.429 292.571-292.571c0-92.571-42.857-177.714-117.143-233.714-32-24-38.857-70.286-14.286-102.286 24-32.571 70.286-38.857 102.286-14.286 111.429 83.429 175.429 211.429 175.429 350.286zM512 73.143v365.714c0 40-33.143 73.143-73.143 73.143s-73.143-33.143-73.143-73.143v-365.714c0-40 33.143-73.143 73.143-73.143s73.143 33.143 73.143 73.143z"></path>
                 </svg>
@@ -236,11 +268,13 @@ const DappHome = (props) => {
       </section>
       <section className="home-action-bar1">
         <footer className="home-footer">
-          <img
-            alt="logo"
-            src="/playground_assets/alfa_logo-1500h.png"
-            className="home-image"
-          />
+          <a href="https://www.alfasociety.io/">
+            <img
+              alt="logo"
+              src="/playground_assets/alfa_logo-1500h.png"
+              className="home-image"
+            />
+          </a>
           <div className="home-container7">
             <span className="home-text24">Copyright © {copyRightYear}</span>
           </div>
@@ -256,7 +290,7 @@ const DappHome = (props) => {
               </svg>
             </a>
             <a
-              href="https://twitter.com/theALFAcoinETH"
+              href="https://twitter.com/alfasocietyERC"
               target="_blank"
               rel="noreferrer noopener"
               className="home-link6"
@@ -272,4 +306,4 @@ const DappHome = (props) => {
   );
 };
 
-export default DappHome;
+export default AirdropBot;
