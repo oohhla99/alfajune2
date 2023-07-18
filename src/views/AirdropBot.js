@@ -10,50 +10,17 @@ import ZKdrop from "../components/Zkdrop/Zkdrop";
 import "./AirdropBot.css";
 
 const AirdropBot = (props) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isWhitelisted, setIsWhitelisted] = useState(false);
   let navigate = useNavigate();
   const { address, isConnected } = useAccount();
 
-  useEffect(() => {
-    const lastWhitelistCheckTime = localStorage.getItem("whitelistCheckTime");
-    const isWhitelistedStored = localStorage.getItem("isWhitelisted");
-
-    if (
-      lastWhitelistCheckTime &&
-      isWhitelistedStored === "true" &&
-      isConnected &&
-      address
-    ) {
-      const currentTime = new Date().getTime();
-      const elapsedTime = currentTime - parseInt(lastWhitelistCheckTime);
-
-      // Check if elapsed time is within a certain time frame (e.g. 5 minutes)
-      const timeFrame = 20 * 60 * 1000; // 20 minutes in milliseconds
-      if (elapsedTime <= timeFrame) {
-        setIsWhitelisted(true);
-        setIsLoading(false);
-        return;
-      }
-    }
-
-    if (!isConnected || isWhitelistedStored !== "true") {
-      navigate("/");
-    } else {
-      setIsLoading(false);
-      setIsWhitelisted(true);
-      localStorage.setItem(
-        "whitelistCheckTime",
-        new Date().getTime().toString()
-      );
-    }
-  }, [isConnected, navigate, address]);
-
   let copyRightYear = "alfa.society " + new Date().getFullYear();
 
-  if (isLoading) {
-    return null; // Render nothing when still loading
-  }
+  // useEffect(() => {
+  //   // Redirect to homepage if not connected
+  //   if (!isConnected) {
+  //     navigate("/");
+  //   }
+  // }, [isConnected, navigate]);
 
   return (
     <div className="home-container">
@@ -107,7 +74,7 @@ const AirdropBot = (props) => {
         </div>
         <div className="home-cards">
           <div className="home-container3">
-            <div className="home-schedule card">
+            <div className="active-airdrop-bot-card card">
               <img
                 alt="pastedImage"
                 src="/playground_assets/arbitrum_symbol-full-color-white-background-200w.png"
@@ -140,36 +107,42 @@ const AirdropBot = (props) => {
               </div>
               <Arbdrop rootClassName="component1-root-class-name"></Arbdrop>
             </div>
-            <div className="home-schedule1 card">
+            <div className="inactive-airdrop-bot-card card">
               <img
                 alt="pastedImage"
-                src="/playground_assets/optimism.caeb9392.svg"
-                className="home-icon05"
+                src="/playground_assets/layerzero_symbol-full-color-white-background-200w.png"
+                className="home-icon04"
               />
-              <span className="home-text10">Optimism 2nd airdrop</span>
-              <span className="home-text11">
-                <span className="home-text12">
-                  Optimism is an Ethereum Layer 2 scaling solution powered by a
-                  technology called Optimistic rollups, designed to utilize the
-                  strong security guarantees of Ethereum while reducing its cost
-                  and latency.
-                </span>
-                <br></br>
-                <span>The Optimism Foundation will distribute...</span>
-                <br></br>
+              <span className="home-text08">LayerZero</span>
+              <span className="home-text09">
+                LayerZero is an omnichain interoperability protocol designed for
+                lightweight message passing across chains. LayerZero provides
+                authentic and guaranteed message delivery with configurable
+                trustlessness.{" "}
               </span>
-              <a
-                href="https://www.optimism.io/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="home-link1 Link"
-              >
-                More info
-              </a>
+              <div className="airdropLinks">
+                <a
+                  href="https://layerzero.network/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  More info
+                </a>
+                {/* <a
+                  href="https://3053004074-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fus2iMTHQw8b5HBPiAvSZ%2Fuploads%2FKH77qAcR9qm81ZdcgobH%2Falfa.airdropbot_arbitrum_instructions.pdf?alt=media&token=3740f5d2-e0ea-46be-81e3-db78d78e02ad"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="airdropLink"
+                >
+                  Instructions
+                </a> */}
+              </div>
+              {/* <Arbdrop rootClassName="component1-root-class-name"></Arbdrop> */}
             </div>
           </div>
           <div className="home-container4">
-            <div className="home-schedule2 card">
+            <div className="inactive-airdrop-bot-card card">
               <img
                 alt="pastedImage"
                 src="/playground_assets/metamask_fox.svg%20%5B1%5D-200h.png"
@@ -200,9 +173,9 @@ const AirdropBot = (props) => {
                   Instructions
                 </a>
               </div>
-              <Metadrop rootClassName="component1-root-class-name"></Metadrop>
+              {/* <Metadrop rootClassName="component1-root-class-name"></Metadrop> */}
             </div>
-            <div className="home-schedule card">
+            <div className="inactive-airdrop-bot-card card">
               <img
                 alt="pastedImage"
                 src="/playground_assets/logo-no-letters.svg"
@@ -234,7 +207,36 @@ const AirdropBot = (props) => {
                   Instructions
                 </a>
               </div>
-              <ZKdrop rootClassName="component1-root-class-name" />
+              {/* <ZKdrop rootClassName="component1-root-class-name" /> */}
+            </div>
+          </div>
+          <div className="home-container3">
+            <div className="inactive-airdrop-bot-card card">
+              <img
+                alt="pastedImage"
+                src="/playground_assets/optimism.caeb9392.svg"
+                className="home-icon05"
+              />
+              <span className="home-text10">Optimism 2nd airdrop</span>
+              <span className="home-text11">
+                <span className="home-text12">
+                  Optimism is an Ethereum Layer 2 scaling solution powered by a
+                  technology called Optimistic rollups, designed to utilize the
+                  strong security guarantees of Ethereum while reducing its cost
+                  and latency.
+                </span>
+                <br></br>
+                <span>The Optimism Foundation will distribute...</span>
+                <br></br>
+              </span>
+              <a
+                href="https://www.optimism.io/"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="home-link1 Link"
+              >
+                More info
+              </a>
             </div>
           </div>
         </div>

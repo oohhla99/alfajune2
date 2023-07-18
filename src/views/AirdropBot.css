@@ -234,7 +234,7 @@
   flex-direction: row;
   justify-content: flex-start;
 }
-.home-schedule {
+.active-airdrop-bot-card {
   padding-top: var(--dl-space-space-twounits);
   padding-bottom: var(--dl-space-space-twounits);
 }
@@ -285,7 +285,7 @@
 .home-link:hover {
   text-decoration: underline;
 }
-.home-schedule1 {
+.inactive-airdrop-bot-card {
   padding-top: var(--dl-space-space-twounits);
   padding-bottom: var(--dl-space-space-twounits);
   background-color: #b9aed8;
@@ -326,7 +326,7 @@
   margin-bottom: var(--dl-space-space-fourunits);
   flex-direction: row;
 }
-.home-schedule2 {
+.active-airdrop-bot-cardard2 {
   padding-top: var(--dl-space-space-twounits);
   padding-bottom: var(--dl-space-space-twounits);
 }
@@ -372,7 +372,7 @@
   justify-content: center;
   background-color: var(--dl-color-template-themepurple);
 }
-.home-schedule3 {
+.active-airdrop-bot-cardard3 {
   padding-top: var(--dl-space-space-twounits);
   padding-bottom: var(--dl-space-space-twounits);
   background-color: #b9aed8;
@@ -923,7 +923,7 @@
     gap: var(--dl-space-space-oneandhalfunits);
     margin-bottom: var(--dl-space-space-oneandhalfunits);
   }
-  .home-schedule {
+  .active-airdrop-bot-cardard {
     padding-top: var(--dl-space-space-twounits);
     border-color: var(--dl-color-template-themepurple);
     border-width: 1px;
@@ -934,12 +934,13 @@
     width: 44px;
     height: 44px;
   }
-  .home-schedule1 {
+  .inactive-active-airdrop-bot-card {
     padding-top: var(--dl-space-space-twounits);
     border-color: var(--dl-color-template-themepurple);
     border-width: 1px;
     border-radius: 32px;
     padding-bottom: var(--dl-space-space-twounits);
+    background-color: #b9aed8;
   }
   .home-icon05 {
     width: 44px;
@@ -949,7 +950,7 @@
     gap: var(--dl-space-space-oneandhalfunits);
     margin-bottom: 0px;
   }
-  .home-schedule2 {
+  .active-airdrop-bot-cardard2 {
     padding-top: var(--dl-space-space-twounits);
     border-color: var(--dl-color-template-themepurple);
     border-width: 1px;
@@ -960,7 +961,7 @@
     width: 44px;
     height: 44px;
   }
-  .home-schedule3 {
+  .active-airdrop-bot-cardard3 {
     padding-top: var(--dl-space-space-twounits);
     border-color: var(--dl-color-template-themepurple);
     border-width: 1px;
