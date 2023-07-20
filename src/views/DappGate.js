@@ -3,7 +3,6 @@ import Papa from "papaparse";
 import { useContractRead, useAccount } from "wagmi";
 import contractABI from "../abis/abi.json";
 import { toast } from "react-toastify";
-// import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ConnectionButton } from "../components/ConnectButton";
@@ -32,9 +31,9 @@ const DappGate = (props) => {
 
   let navigate = useNavigate();
 
-  // Alfa Token mainnet address is the contract address here
+  // $ALFA Token contract address
   const contractAddress = "0x128ad1ad707c3B36e6F2ac9739f9dF7516FdB592";
-  //ALphawolves NFT ca
+  //ALphawolves NFT contract address
   const contractAddress2 = "0xdcd6d4a557ff208f01D4c2b5Bf829078622C37c5";
 
   const { data: balanceOfCheck } = useContractRead({
@@ -60,23 +59,32 @@ const DappGate = (props) => {
   // const bal = balanceOfCheck
   // console.log(bal)
 
-  const balance = balanceOfCheck ? hexToDecimal(balanceOfCheck._hex) / 1e18 : 0;
-  const balance2 = parseInt(balanceOfCheck2, 16);
-  console.log(balance);
-  console.log(balance2);
+  // const balance = balanceOfCheck ? hexToDecimal(balanceOfCheck._hex) / 1e18 : 0;
+  // const balance2 = parseInt(balanceOfCheck2, 16);
+  // console.log(balance);
+  // console.log(balance2);
 
   // if user wallet is not connected, this function will be called to the user attention
+  let isNotificationVisible = false;
+
   const connectWalletError = () => {
-    if (!isConnected) {
+    if (!isConnected && !isNotificationVisible) {
+      isNotificationVisible = true;
       toast.warning("Please connect your wallet first to continue", {
         position: toast.POSITION.TOP_LEFT,
         theme: "dark",
         autoClose: 5000,
+        onClose: () => {
+          isNotificationVisible = false; // Reset the flag when the notification is closed
+        },
       });
     }
   };
 
   // if user wallet is not in the WL, the warning appears. If they are they proceed to dapp
+
+  let isNotificationVisible2 = false;
+
   const enterDapp = () => {
     if (!address) {
       // handle case when address is not defined
@@ -90,14 +98,20 @@ const DappGate = (props) => {
       localStorage.setItem("isWhitelisted", "true"); // set isWhitelisted flag in localStorage
       navigate("/airdrop-bot");
     } else {
-      toast.warning(
-        "Your wallet is not whitelisted. Please proceed by whitelisting your wallet address.",
-        {
-          position: toast.POSITION.TOP_CENTER,
-          theme: "dark",
-          autoClose: 5000,
-        }
-      );
+      if (!isNotificationVisible2) {
+        isNotificationVisible2 = true;
+        toast.warning(
+          "Your wallet is not whitelisted. Please proceed by whitelisting your wallet address.",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            theme: "dark",
+            autoClose: 5000,
+            onClose: () => {
+              isNotificationVisible2 = false; // Reset the flag when the notification is closed
+            },
+          }
+        );
+      }
     }
   };
 
@@ -115,7 +129,7 @@ const DappGate = (props) => {
           className="page-image"
         />
         <h1 className="page-text">alfa.dapp</h1>
-        <span className="page-text1">v1.1</span>
+        <span className="page-text1">v1.2</span>
         <span className="page-text2">
           You need to whitelist your wallet first.
         </span>
