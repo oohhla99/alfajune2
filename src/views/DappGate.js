@@ -134,7 +134,7 @@ const DappGate = (props) => {
           You need to whitelist your wallet first.
         </span>
         <a
-          href="https://whitelist.alfasociety.io/"
+          href="https://alfasociety.gitbook.io/alfa.society-information-hub/utilities/alfa.airdropbot/whitelisting"
           target="_blank"
           rel="noreferrer noopener"
           className="page-link"
