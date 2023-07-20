@@ -74,7 +74,7 @@ const AirdropBot = (props) => {
         </div>
         <div className="home-cards">
           <div className="home-container3">
-            <div className="active-airdrop-bot-card card">
+            <div className="inactive-airdrop-bot-card card">
               <img
                 alt="pastedImage"
                 src="/playground_assets/arbitrum_symbol-full-color-white-background-200w.png"
@@ -105,7 +105,7 @@ const AirdropBot = (props) => {
                   Instructions
                 </a>
               </div>
-              <Arbdrop rootClassName="component1-root-class-name"></Arbdrop>
+              {/* <Arbdrop rootClassName="component1-root-class-name"></Arbdrop> */}
             </div>
             <div className="inactive-airdrop-bot-card card">
               <img
